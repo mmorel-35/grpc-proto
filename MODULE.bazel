@@ -1,0 +1,17 @@
+module(
+    name = "grpc_proto",
+    version = "",
+    repo_name = "io_grpc_grpc_proto",
+)
+
+bazel_dep(name = "rules_proto", version = "5.3.0-21.7")
+bazel_dep(name = "protobuf", version = "23.1", repo_name = "com_google_protobuf")
+# -- bazel_dep definitions -- #
+
+http_archives_extension = use_extension("//bazel:http_archives_extension.bzl", "http_archives_extension")
+use_repo(http_archives_extension, "com_google_googleapis")
+# End of extension `http_archives_extension`
+
+switched_rules_extension = use_extension("//bazel:switched_rules_extension.bzl", "switched_rules_extension")
+use_repo(switched_rules_extension, "com_google_googleapis_imports")
+# End of extension `switched_rules_extension`
